@@ -1,100 +1,106 @@
+import React from 'react';
+import { Button } from './ui/button';
+import { Card, CardContent, CardFooter } from './ui/card';
+import { MapPin, Home, ArrowRight } from 'lucide-react';
 
-import { Building, MapPin, Ruler, Tag } from "lucide-react";
-import { Button } from "./ui/button";
-import { Card, CardContent, CardFooter, CardHeader } from "./ui/card";
-import { Badge } from "./ui/badge";
+interface PropertyProps {
+  id: number;
+  title: string;
+  address: string;
+  area: number;
+  price: number;
+  priceUnit: string;
+  type: string;
+  image: string;
+}
 
-const offers = [
-  {
-    id: 1,
-    title: "Офис в бизнес-центре 'Престиж'",
-    type: "Офис",
-    address: "ул. Ленина, 45",
-    area: 120,
-    price: 1200,
-    isTop: true,
-    image: "/placeholder.svg"
-  },
-  {
-    id: 2,
-    title: "Торговое помещение в ТЦ 'Европейский'",
-    type: "Торговая площадь",
-    address: "пр. Мира, 76",
-    area: 85,
-    price: 2400,
-    isTop: false,
-    image: "/placeholder.svg"
-  },
-  {
-    id: 3,
-    title: "Склад класса А в логистическом парке",
-    type: "Склад",
-    address: "Промышленная зона, 12",
-    area: 450,
-    price: 650,
-    isTop: false,
-    image: "/placeholder.svg"
-  }
-];
+const PropertyCard: React.FC<PropertyProps> = ({ 
+  id, title, address, area, price, priceUnit, type, image 
+}) => {
+  return (
+    <Card className="property-card h-full flex flex-col">
+      <div className="relative h-56">
+        <img src={image} alt={title} className="w-full h-full object-cover" />
+        <div className="absolute top-4 left-4 bg-estate-accent text-white px-3 py-1 text-sm rounded">
+          {type}
+        </div>
+      </div>
+      <CardContent className="flex-grow p-6">
+        <h3 className="text-xl font-bold mb-2">{title}</h3>
+        <div className="flex items-center text-gray-600 mb-4">
+          <MapPin className="h-4 w-4 mr-2" />
+          <span className="text-sm">{address}</span>
+        </div>
+        <div className="flex items-center text-gray-600 mb-4">
+          <Home className="h-4 w-4 mr-2" />
+          <span className="text-sm">{area} м²</span>
+        </div>
+        <div className="text-estate-DEFAULT font-bold text-xl">
+          {price.toLocaleString('ru-RU')} ₽{priceUnit}
+        </div>
+      </CardContent>
+      <CardFooter className="border-t p-6">
+        <Button className="w-full bg-estate-DEFAULT text-white hover:bg-estate-accent flex items-center justify-center gap-2">
+          Подробнее <ArrowRight className="h-4 w-4" />
+        </Button>
+      </CardFooter>
+    </Card>
+  );
+};
 
 const PropertyOffers = () => {
+  const properties: PropertyProps[] = [
+    {
+      id: 1,
+      title: "Офис с отделкой, 100 м²",
+      address: "г. Москва, ул. Профсоюзная, д. 93, к. 4",
+      area: 100,
+      price: 25000,
+      priceUnit: "/мес",
+      type: "Аренда",
+      image: "/placeholder.svg"
+    },
+    {
+      id: 2,
+      title: "Склад класса B+, 500 м²",
+      address: "г. Москва, ул. Ленинская Слобода, д. 19",
+      area: 500,
+      price: 350000,
+      priceUnit: "/мес",
+      type: "Аренда",
+      image: "/placeholder.svg"
+    },
+    {
+      id: 3,
+      title: "Торговое помещение, 80 м²",
+      address: "г. Москва, ул. Кутузовский проспект, д. 45",
+      area: 80,
+      price: 15000000,
+      priceUnit: "",
+      type: "Продажа",
+      image: "/placeholder.svg"
+    }
+  ];
+
   return (
-    <section id="offers" className="py-20 bg-gray-50">
-      <div className="container px-4 md:px-6">
-        <div className="flex flex-col items-center justify-center space-y-4 text-center">
-          <div className="space-y-2">
-            <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">Актуальные предложения</h2>
-            <p className="max-w-[700px] text-gray-500 md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
-              Ознакомьтесь с нашими лучшими предложениями аренды коммерческой недвижимости
-            </p>
-          </div>
-        </div>
+    <section className="py-16">
+      <div className="container mx-auto">
+        <h2 className="section-title text-center">Актуальные предложения</h2>
+        <div className="accent-line mx-auto"></div>
+        <p className="text-center text-gray-600 mb-12 max-w-2xl mx-auto">
+          Мы предлагаем широкий выбор коммерческой недвижимости разного целевого назначения в собственность и аренду
+        </p>
         
-        <div className="grid gap-6 mt-10 sm:grid-cols-2 lg:grid-cols-3">
-          {offers.map((offer) => (
-            <Card key={offer.id} className="overflow-hidden transition-all hover:shadow-lg">
-              <div className="relative">
-                <img 
-                  src={offer.image} 
-                  alt={offer.title} 
-                  className="object-cover w-full h-48"
-                />
-                {offer.isTop && (
-                  <Badge className="absolute top-2 right-2 bg-primary">
-                    Топ предложение
-                  </Badge>
-                )}
-              </div>
-              <CardHeader className="p-4">
-                <h3 className="text-lg font-bold">{offer.title}</h3>
-                <div className="flex items-center text-sm text-gray-500">
-                  <Building className="w-4 h-4 mr-1" />
-                  <span>{offer.type}</span>
-                </div>
-              </CardHeader>
-              <CardContent className="p-4 pt-0 space-y-3">
-                <div className="flex items-center text-sm">
-                  <MapPin className="w-4 h-4 mr-2 text-gray-400" />
-                  <span>{offer.address}</span>
-                </div>
-                <div className="flex items-center text-sm">
-                  <Ruler className="w-4 h-4 mr-2 text-gray-400" />
-                  <span>{offer.area} м²</span>
-                </div>
-                <div className="flex items-center text-sm font-bold">
-                  <Tag className="w-4 h-4 mr-2 text-gray-400" />
-                  <span>{offer.price} ₽/м² в месяц</span>
-                </div>
-              </CardContent>
-              <CardFooter className="p-4 pt-0">
-                <Button className="w-full">Подробнее</Button>
-              </CardFooter>
-            </Card>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {properties.map(property => (
+            <PropertyCard key={property.id} {...property} />
           ))}
         </div>
         
-        <div className="flex justify-center mt-10">
-          <Button variant="outline" size="lg">Смотреть все предложения</Button>
+        <div className="mt-12 text-center">
+          <Button className="bg-estate-accent hover:bg-estate-accent/90 text-white px-6 py-3 text-lg">
+            Смотреть все предложения
+          </Button>
         </div>
       </div>
     </section>

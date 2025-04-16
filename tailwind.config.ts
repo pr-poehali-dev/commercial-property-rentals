@@ -61,6 +61,11 @@ export default {
 					'accent-foreground': 'hsl(var(--sidebar-accent-foreground))',
 					border: 'hsl(var(--sidebar-border))',
 					ring: 'hsl(var(--sidebar-ring))'
+				},
+				estate: {
+					DEFAULT: '#1E2738',
+					gold: '#E8B75A',
+					accent: '#ff5e14'
 				}
 			},
 			borderRadius: {

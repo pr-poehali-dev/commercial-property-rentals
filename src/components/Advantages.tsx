@@ -1,66 +1,86 @@
+import React from 'react';
+import { Card, CardContent } from './ui/card';
+import { Check, Clock, Award, ThumbsUp } from 'lucide-react';
 
-import { Award, Clock, FileText, Handshake, HeartHandshake, Shield } from "lucide-react";
+interface AdvantageProps {
+  icon: React.ReactNode;
+  title: string;
+  description: string;
+}
 
-const advantages = [
-  {
-    icon: Shield,
-    title: "Гарантия юридической чистоты",
-    description: "Все помещения проходят тщательную юридическую проверку и имеют полный пакет документов"
-  },
-  {
-    icon: Award,
-    title: "Собственная недвижимость",
-    description: "Мы сдаем только собственную недвижимость без посредников и дополнительных комиссий"
-  },
-  {
-    icon: HeartHandshake,
-    title: "Индивидуальный подход",
-    description: "Подбираем оптимальные варианты под конкретные потребности вашего бизнеса"
-  },
-  {
-    icon: Clock,
-    title: "Быстрое заселение",
-    description: "Оформление документов и заселение в кратчайшие сроки — от 24 часов"
-  },
-  {
-    icon: FileText,
-    title: "Гибкие условия договора",
-    description: "Возможность корректировки условий договора под ваши потребности"
-  },
-  {
-    icon: Handshake,
-    title: "Долгосрочное сотрудничество",
-    description: "Поддержка арендаторов на всех этапах сотрудничества и специальные условия для постоянных клиентов"
-  }
-];
+const AdvantageCard: React.FC<AdvantageProps> = ({ icon, title, description }) => {
+  return (
+    <Card className="border-none shadow-lg bg-white h-full">
+      <CardContent className="p-8">
+        <div className="flex flex-col items-center text-center">
+          <div className="mb-6 text-estate-accent">
+            {icon}
+          </div>
+          <h3 className="text-xl font-bold mb-4">{title}</h3>
+          <p className="text-gray-600">{description}</p>
+        </div>
+      </CardContent>
+    </Card>
+  );
+};
 
 const Advantages = () => {
+  const advantages = [
+    {
+      icon: <Clock className="h-12 w-12" />,
+      title: "Работаем с 2002 года",
+      description: "Более 20 лет опыта на рынке коммерческой недвижимости"
+    },
+    {
+      icon: <Check className="h-12 w-12" />,
+      title: "Прозрачные условия",
+      description: "Никаких скрытых платежей и комиссий, честные условия сотрудничества"
+    },
+    {
+      icon: <Award className="h-12 w-12" />,
+      title: "Собственные объекты",
+      description: "Мы собственники недвижимости, поэтому можем предложить лучшие условия"
+    },
+    {
+      icon: <ThumbsUp className="h-12 w-12" />,
+      title: "Индивидуальный подход",
+      description: "Подберем оптимальное решение под ваши потребности и бюджет"
+    }
+  ];
+
   return (
-    <section id="advantages" className="py-20 bg-white">
-      <div className="container px-4 md:px-6">
-        <div className="flex flex-col items-center justify-center space-y-4 text-center">
-          <div className="space-y-2">
-            <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">Наши преимущества</h2>
-            <p className="max-w-[700px] text-gray-500 md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
-              Почему стоит выбрать именно нашу компанию для аренды коммерческой недвижимости
-            </p>
-          </div>
-        </div>
+    <section className="py-16 bg-gray-50">
+      <div className="container mx-auto">
+        <h2 className="section-title text-center">Наши преимущества</h2>
+        <div className="accent-line mx-auto"></div>
+        <p className="text-center text-gray-600 mb-12 max-w-2xl mx-auto">
+          Почему клиенты выбирают "КОМВИД" для решения задач в сфере коммерческой недвижимости
+        </p>
         
-        <div className="grid gap-6 mt-10 md:grid-cols-2 lg:grid-cols-3">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           {advantages.map((advantage, index) => (
-            <div key={index} className="flex space-x-4 p-6 rounded-lg border border-gray-100 hover:border-primary/20 hover:bg-primary/5 transition-colors">
-              <div className="flex-shrink-0">
-                <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center">
-                  <advantage.icon className="w-6 h-6 text-primary" />
-                </div>
-              </div>
-              <div className="space-y-1">
-                <h3 className="text-lg font-medium">{advantage.title}</h3>
-                <p className="text-sm text-gray-500">{advantage.description}</p>
-              </div>
-            </div>
+            <AdvantageCard key={index} {...advantage} />
           ))}
+        </div>
+
+        <div className="mt-16 bg-estate-DEFAULT text-white p-8 rounded-lg grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div className="text-center py-6 border-b md:border-b-0 md:border-r border-white/20">
+            <div className="text-6xl font-bold text-estate-accent">21</div>
+            <div className="text-xl mt-2">год</div>
+            <div className="text-sm text-gray-300">в коммерческой недвижимости</div>
+          </div>
+          
+          <div className="text-center py-6 border-b md:border-b-0 md:border-r border-white/20">
+            <div className="text-6xl font-bold text-estate-accent">20+</div>
+            <div className="text-xl mt-2">арендаторов</div>
+            <div className="text-sm text-gray-300">и торговых сетей сотрудничают с нами</div>
+          </div>
+          
+          <div className="text-center py-6">
+            <div className="text-6xl font-bold text-estate-accent">4000+</div>
+            <div className="text-xl mt-2">квадратных метров</div>
+            <div className="text-sm text-gray-300">коммерческой недвижимости в собственности</div>
+          </div>
         </div>
       </div>
     </section>

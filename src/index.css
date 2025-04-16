@@ -92,3 +92,17 @@
     @apply bg-background text-foreground;
   }
 }
+
+@layer components {
+  .property-card {
+    @apply bg-white shadow-md rounded-md overflow-hidden transition-transform duration-300 hover:shadow-lg hover:-translate-y-1;
+  }
+  
+  .section-title {
+    @apply text-3xl font-bold text-estate-DEFAULT mb-8;
+  }
+  
+  .accent-line {
+    @apply w-24 h-1 bg-estate-accent my-4;
+  }
+}

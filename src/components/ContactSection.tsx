@@ -1,76 +1,107 @@
-
-import { Mail, MapPin, Phone } from "lucide-react";
-import { Button } from "./ui/button";
-import { Input } from "./ui/input";
-import { Textarea } from "./ui/textarea";
+import React from 'react';
+import { Button } from './ui/button';
+import { Input } from './ui/input';
+import { Textarea } from './ui/textarea';
+import { Label } from './ui/label';
+import { Checkbox } from './ui/checkbox';
+import { Phone, Mail, MapPin } from 'lucide-react';
 
 const ContactSection = () => {
   return (
-    <section id="contacts" className="py-20 bg-white">
-      <div className="container px-4 md:px-6">
-        <div className="grid gap-10 lg:grid-cols-2">
-          <div className="space-y-6">
-            <div className="space-y-2">
-              <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl">Связаться с нами</h2>
-              <p className="text-gray-500">
-                Оставьте заявку или свяжитесь с нами любым удобным способом, и мы поможем подобрать идеальное помещение для вашего бизнеса
-              </p>
-            </div>
+    <section className="bg-estate-DEFAULT py-16 text-white">
+      <div className="container mx-auto">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
+          <div>
+            <h2 className="text-3xl font-bold mb-6">ОСТАВЬТЕ ЗАЯВКУ</h2>
+            <div className="w-24 h-1 bg-estate-accent mb-8"></div>
+            <p className="mb-8 text-gray-300">
+              НАШ СПЕЦИАЛИСТ С ВАМИ СВЯЖЕТСЯ И ДАСТ БОЛЕЕ ПОДРОБНУЮ ИНФОРМАЦИЮ
+            </p>
             
-            <div className="space-y-4">
-              <div className="flex items-start space-x-4">
-                <MapPin className="w-6 h-6 text-primary mt-0.5" />
-                <div>
-                  <h3 className="font-medium">Адрес</h3>
-                  <p className="text-sm text-gray-500">г. Москва, ул. Ленина, д. 100, офис 314</p>
-                </div>
+            <form className="space-y-6">
+              <div>
+                <Label htmlFor="name" className="text-white">ФИО *</Label>
+                <Input 
+                  id="name" 
+                  type="text" 
+                  className="bg-estate-DEFAULT/50 border-estate-DEFAULT/80 text-white placeholder:text-gray-400"
+                  placeholder="Введите ваше имя"
+                />
               </div>
               
-              <div className="flex items-start space-x-4">
-                <Phone className="w-6 h-6 text-primary mt-0.5" />
-                <div>
-                  <h3 className="font-medium">Телефон</h3>
-                  <p className="text-sm text-gray-500">+7 (999) 123-45-67</p>
-                </div>
+              <div>
+                <Label htmlFor="phone" className="text-white">Телефон *</Label>
+                <Input 
+                  id="phone" 
+                  type="tel" 
+                  className="bg-estate-DEFAULT/50 border-estate-DEFAULT/80 text-white placeholder:text-gray-400"
+                  placeholder="+7 (___) ___-__-__"
+                />
               </div>
               
-              <div className="flex items-start space-x-4">
-                <Mail className="w-6 h-6 text-primary mt-0.5" />
-                <div>
-                  <h3 className="font-medium">Email</h3>
-                  <p className="text-sm text-gray-500">info@nedvizhimost-pro.ru</p>
-                </div>
+              <div>
+                <Label htmlFor="email" className="text-white">E-mail</Label>
+                <Input 
+                  id="email" 
+                  type="email" 
+                  className="bg-estate-DEFAULT/50 border-estate-DEFAULT/80 text-white placeholder:text-gray-400"
+                  placeholder="your@email.com"
+                />
               </div>
-            </div>
+              
+              <div>
+                <Label htmlFor="message" className="text-white">Сообщение</Label>
+                <Textarea 
+                  id="message" 
+                  className="bg-estate-DEFAULT/50 border-estate-DEFAULT/80 text-white placeholder:text-gray-400 resize-none"
+                  placeholder="Ваше сообщение"
+                  rows={4}
+                />
+              </div>
+              
+              <div className="flex items-start space-x-2">
+                <Checkbox id="terms" className="mt-1 border-estate-accent" />
+                <Label htmlFor="terms" className="text-sm text-gray-300">
+                  Я соглашаюсь с политикой конфиденциальности. Персональные данные, указанные в данной форме будут использованы только для связи с вами.
+                </Label>
+              </div>
+              
+              <Button className="bg-estate-accent hover:bg-estate-accent/90 text-white px-8 py-6 w-full md:w-auto">
+                ОТПРАВИТЬ
+              </Button>
+            </form>
           </div>
           
-          <div className="space-y-4 p-6 border rounded-lg">
-            <div className="space-y-2">
-              <h3 className="text-xl font-medium">Оставить заявку</h3>
-              <p className="text-sm text-gray-500">
-                Заполните форму, и наш специалист свяжется с вами в ближайшее время
-              </p>
-            </div>
-            
-            <div className="space-y-4">
-              <div className="grid gap-4 sm:grid-cols-2">
-                <div className="space-y-2">
-                  <Input placeholder="Ваше имя" />
+          <div className="flex flex-col justify-center">
+            <div className="bg-estate-DEFAULT/80 p-8 rounded-lg">
+              <h3 className="text-2xl font-bold mb-8">Контактная информация</h3>
+              
+              <div className="space-y-6">
+                <div className="flex items-start">
+                  <Phone className="h-6 w-6 text-estate-accent mr-4 mt-1" />
+                  <div>
+                    <p className="font-bold">Телефон</p>
+                    <a href="tel:+74957920809" className="text-gray-300 hover:text-white">+7 (495) 792-08-09</a>
+                    <a href="tel:+74954299990" className="block text-gray-300 hover:text-white">+7 (495) 429-99-90</a>
+                  </div>
                 </div>
-                <div className="space-y-2">
-                  <Input placeholder="Телефон" type="tel" />
+                
+                <div className="flex items-start">
+                  <Mail className="h-6 w-6 text-estate-accent mr-4 mt-1" />
+                  <div>
+                    <p className="font-bold">Email</p>
+                    <a href="mailto:info@komvid.ru" className="text-gray-300 hover:text-white">info@komvid.ru</a>
+                  </div>
+                </div>
+                
+                <div className="flex items-start">
+                  <MapPin className="h-6 w-6 text-estate-accent mr-4 mt-1" />
+                  <div>
+                    <p className="font-bold">Адрес</p>
+                    <p className="text-gray-300">г. Москва, ул. Профсоюзная, д. 93, к. 4</p>
+                  </div>
                 </div>
               </div>
-              <div className="space-y-2">
-                <Input placeholder="Email" type="email" />
-              </div>
-              <div className="space-y-2">
-                <Textarea placeholder="Опишите, какое помещение вам необходимо" rows={4} />
-              </div>
-              <Button className="w-full">Отправить заявку</Button>
-              <p className="text-xs text-gray-500 text-center">
-                Нажимая на кнопку, вы соглашаетесь с нашей политикой обработки персональных данных
-              </p>
             </div>
           </div>
         </div>

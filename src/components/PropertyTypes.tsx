@@ -1,63 +1,56 @@
+import React from 'react';
+import { Card, CardContent } from './ui/card';
 
-import { Building, Factory, HomeIcon, Store } from "lucide-react";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "./ui/card";
+interface PropertyTypeProps {
+  title: string;
+  image: string;
+  className?: string;
+}
 
-const propertyTypes = [
-  {
-    title: "Офисы",
-    description: "Современные офисные помещения класса A, B и B+ в центре города и деловых районах",
-    icon: Building,
-    bgColor: "bg-blue-50",
-    iconColor: "text-blue-500"
-  },
-  {
-    title: "Торговые площади",
-    description: "Помещения для магазинов и шоурумов в локациях с высоким трафиком посетителей",
-    icon: Store,
-    bgColor: "bg-green-50",
-    iconColor: "text-green-500"
-  },
-  {
-    title: "Склады",
-    description: "Складские помещения разной площади с удобной транспортной доступностью",
-    icon: Factory,
-    bgColor: "bg-amber-50",
-    iconColor: "text-amber-500"
-  },
-  {
-    title: "Многофункциональные помещения",
-    description: "Универсальные пространства для различных видов коммерческой деятельности",
-    icon: HomeIcon,
-    bgColor: "bg-purple-50",
-    iconColor: "text-purple-500"
-  }
-];
+const PropertyTypeCard: React.FC<PropertyTypeProps> = ({ title, image, className }) => {
+  return (
+    <Card className={`property-card relative group cursor-pointer ${className}`}>
+      <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent transition-opacity group-hover:opacity-75"></div>
+      <img src={image} alt={title} className="w-full h-48 object-cover" />
+      <div className="absolute bottom-0 left-0 right-0 p-4 text-white font-semibold uppercase text-center">
+        {title}
+      </div>
+    </Card>
+  );
+};
 
 const PropertyTypes = () => {
+  const propertyTypes = [
+    { 
+      title: "Офисы", 
+      image: "/placeholder.svg" 
+    },
+    { 
+      title: "Склады", 
+      image: "/placeholder.svg" 
+    },
+    { 
+      title: "Машиноместа", 
+      image: "/placeholder.svg" 
+    },
+    { 
+      title: "Торговые помещения", 
+      image: "/placeholder.svg" 
+    },
+    { 
+      title: "ПСН", 
+      image: "/placeholder.svg" 
+    },
+  ];
+
   return (
-    <section id="property-types" className="py-20 bg-white">
-      <div className="container px-4 md:px-6">
-        <div className="flex flex-col items-center justify-center space-y-4 text-center">
-          <div className="space-y-2">
-            <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">Типы помещений</h2>
-            <p className="max-w-[700px] text-gray-500 md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
-              Выберите оптимальный тип помещения для вашего бизнеса
-            </p>
-          </div>
-        </div>
-        <div className="grid gap-6 mt-10 md:grid-cols-2 lg:grid-cols-4">
+    <section className="py-16 bg-gray-50">
+      <div className="container mx-auto">
+        <div className="grid grid-cols-1 md:grid-cols-5 gap-6">
           {propertyTypes.map((type, index) => (
-            <Card key={index} className="overflow-hidden transition-all hover:shadow-lg">
-              <CardHeader className={`${type.bgColor} p-6`}>
-                <div className="w-12 h-12 rounded-full bg-white flex items-center justify-center mb-4">
-                  <type.icon className={`w-6 h-6 ${type.iconColor}`} />
-                </div>
-                <CardTitle>{type.title}</CardTitle>
-              </CardHeader>
-              <CardContent className="p-6">
-                <CardDescription className="text-sm">{type.description}</CardDescription>
-              </CardContent>
-            </Card>
+            <div key={index} className={index === 3 || index === 4 ? "md:col-span-2" : "md:col-span-1"}>
+              <PropertyTypeCard title={type.title} image={type.image} />
+            </div>
           ))}
         </div>
       </div>
