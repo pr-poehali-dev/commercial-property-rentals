@@ -1,72 +1,57 @@
 import React from 'react';
-import { Phone, ChevronDown, MessageCircle } from 'lucide-react';
+import { ChevronDown } from 'lucide-react';
 import { Button } from './ui/button';
 
 const Header = () => {
   return (
-    <header className="bg-estate-DEFAULT text-white">
-      <div className="container mx-auto flex justify-between items-center py-4">
+    <header className="bg-estate-DEFAULT text-white py-4">
+      <div className="container mx-auto px-4 flex justify-between items-center">
         <div className="flex items-center">
-          <div className="flex flex-col mr-12">
-            <div className="flex items-center">
-              <div className="h-10 w-1 bg-estate-accent mr-2"></div>
-              <div className="text-2xl font-bold">КОМВИД</div>
-            </div>
-            <span className="text-xs text-gray-300">коммерческая недвижимость</span>
+          <div className="mr-12">
+            <a href="/" className="flex flex-col">
+              <img 
+                src="/logo-b.svg" 
+                alt="КОМВИД" 
+                className="h-10"
+              />
+              <span className="text-xs text-gray-300 mt-1">коммерческая недвижимость</span>
+            </a>
           </div>
           
-          <nav className="hidden md:flex space-x-4">
+          <nav className="hidden lg:flex space-x-8">
             <div className="relative group">
-              <a href="#" className="flex items-center px-3 py-2 hover:text-estate-accent transition-colors">
+              <a href="#" className="flex items-center uppercase font-medium">
                 АРЕНДА <ChevronDown className="ml-1 h-4 w-4" />
               </a>
-              <div className="absolute z-10 hidden group-hover:block bg-white text-estate-DEFAULT rounded shadow-lg py-2 w-48">
-                <a href="#" className="block px-4 py-2 hover:bg-gray-100">Офисы</a>
-                <a href="#" className="block px-4 py-2 hover:bg-gray-100">Склады</a>
-                <a href="#" className="block px-4 py-2 hover:bg-gray-100">Торговые помещения</a>
-              </div>
             </div>
             
             <div className="relative group">
-              <a href="#" className="flex items-center px-3 py-2 hover:text-estate-accent transition-colors">
+              <a href="#" className="flex items-center uppercase font-medium">
                 ПРОДАЖА <ChevronDown className="ml-1 h-4 w-4" />
               </a>
-              <div className="absolute z-10 hidden group-hover:block bg-white text-estate-DEFAULT rounded shadow-lg py-2 w-48">
-                <a href="#" className="block px-4 py-2 hover:bg-gray-100">Офисы</a>
-                <a href="#" className="block px-4 py-2 hover:bg-gray-100">Склады</a>
-                <a href="#" className="block px-4 py-2 hover:bg-gray-100">Машиноместа</a>
-              </div>
             </div>
             
-            <a href="#" className="px-3 py-2 hover:text-estate-accent transition-colors">НАШИ ОБЪЕКТЫ</a>
+            <a href="#" className="uppercase font-medium">НАШИ ОБЪЕКТЫ</a>
             
             <div className="relative group">
-              <a href="#" className="flex items-center px-3 py-2 hover:text-estate-accent transition-colors">
+              <a href="#" className="flex items-center uppercase font-medium">
                 О КОМПАНИИ <ChevronDown className="ml-1 h-4 w-4" />
               </a>
-              <div className="absolute z-10 hidden group-hover:block bg-white text-estate-DEFAULT rounded shadow-lg py-2 w-48">
-                <a href="#" className="block px-4 py-2 hover:bg-gray-100">История</a>
-                <a href="#" className="block px-4 py-2 hover:bg-gray-100">Команда</a>
-                <a href="#" className="block px-4 py-2 hover:bg-gray-100">Контакты</a>
-              </div>
             </div>
           </nav>
         </div>
         
-        <div className="flex items-center space-x-4">
-          <div className="hidden md:block">
-            <a href="tel:+74957920809" className="text-white hover:text-estate-accent flex items-center">
-              <Phone className="h-4 w-4 mr-2" />
-              +7 (495) 792-08-09
-            </a>
-          </div>
+        <div className="flex items-center">
+          <a href="tel:+74957920809" className="text-white mr-4 hidden md:flex items-center">
+            +7 (495) 792-08-09
+          </a>
           
-          <Button variant="outline" className="border-estate-accent text-white hover:bg-estate-accent">
+          <Button variant="outline" className="mr-4 border-white/20 hover:bg-transparent">
             ЗАКАЗАТЬ ЗВОНОК
           </Button>
           
           <a href="#" className="bg-green-600 p-2 rounded-full flex items-center justify-center">
-            <MessageCircle className="h-5 w-5" />
+            <img src="/WhatsApp.svg" alt="WhatsApp" className="h-5 w-5" />
           </a>
         </div>
       </div>

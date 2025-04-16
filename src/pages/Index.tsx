@@ -2,10 +2,10 @@ import React from 'react';
 import Header from '@/components/Header';
 import Hero from '@/components/Hero';
 import PropertyTypes from '@/components/PropertyTypes';
-import PropertyOffers from '@/components/PropertyOffers';
-import Advantages from '@/components/Advantages';
-import Partners from '@/components/Partners';
-import ContactSection from '@/components/ContactSection';
+import AboutCompany from '@/components/AboutCompany';
+import Stats from '@/components/Stats';
+import ContactForm from '@/components/ContactForm';
+import BuildingIllustration from '@/components/BuildingIllustration';
 import Footer from '@/components/Footer';
 
 const Index = () => {
@@ -15,10 +15,10 @@ const Index = () => {
       <main className="flex-grow">
         <Hero />
         <PropertyTypes />
-        <PropertyOffers />
-        <Advantages />
-        <Partners />
-        <ContactSection />
+        <AboutCompany />
+        <Stats />
+        <ContactForm />
+        <BuildingIllustration />
       </main>
       <Footer />
     </div>

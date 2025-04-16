@@ -1,57 +1,46 @@
 import React from 'react';
-import { Card, CardContent } from './ui/card';
 
 interface PropertyTypeProps {
   title: string;
   image: string;
-  className?: string;
 }
 
-const PropertyTypeCard: React.FC<PropertyTypeProps> = ({ title, image, className }) => {
+const PropertyType: React.FC<PropertyTypeProps> = ({ title, image }) => {
   return (
-    <Card className={`property-card relative group cursor-pointer ${className}`}>
-      <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent transition-opacity group-hover:opacity-75"></div>
-      <img src={image} alt={title} className="w-full h-48 object-cover" />
-      <div className="absolute bottom-0 left-0 right-0 p-4 text-white font-semibold uppercase text-center">
+    <div className="relative group cursor-pointer">
+      <img src={image} alt={title} className="w-full h-full object-cover" />
+      <div className="absolute inset-0 bg-black/40"></div>
+      <div className="absolute bottom-0 left-0 right-0 text-center py-3 text-white uppercase font-medium">
         {title}
       </div>
-    </Card>
+    </div>
   );
 };
 
 const PropertyTypes = () => {
-  const propertyTypes = [
-    { 
-      title: "Офисы", 
-      image: "/placeholder.svg" 
-    },
-    { 
-      title: "Склады", 
-      image: "/placeholder.svg" 
-    },
-    { 
-      title: "Машиноместа", 
-      image: "/placeholder.svg" 
-    },
-    { 
-      title: "Торговые помещения", 
-      image: "/placeholder.svg" 
-    },
-    { 
-      title: "ПСН", 
-      image: "/placeholder.svg" 
-    },
-  ];
-
   return (
-    <section className="py-16 bg-gray-50">
-      <div className="container mx-auto">
-        <div className="grid grid-cols-1 md:grid-cols-5 gap-6">
-          {propertyTypes.map((type, index) => (
-            <div key={index} className={index === 3 || index === 4 ? "md:col-span-2" : "md:col-span-1"}>
-              <PropertyTypeCard title={type.title} image={type.image} />
-            </div>
-          ))}
+    <section className="py-10">
+      <div className="container mx-auto px-4">
+        <div className="grid grid-cols-2 md:grid-cols-5 gap-4">
+          <PropertyType 
+            title="Офисы" 
+            image="/placeholder.svg" 
+          />
+          <PropertyType 
+            title="Машиноместа" 
+            image="/placeholder.svg" 
+          />
+          <PropertyType 
+            title="Торговые помещения" 
+            image="/placeholder.svg" 
+          />
+          <PropertyType 
+            title="ПСН" 
+            image="/placeholder.svg" 
+          />
+          <div className="hidden md:block">
+            {/* Пустая ячейка для соответствия макету */}
+          </div>
         </div>
       </div>
     </section>
