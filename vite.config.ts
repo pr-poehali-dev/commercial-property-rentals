@@ -19,7 +19,9 @@ export default defineConfig({
     port: 5173,
     allowedHosts: true,
     hmr: {
-      overlay: false // Disables the error overlay if you only want console errors
+      clientPort: 443, // Используем стандартный HTTPS порт для WebSocket
+      host: 'preview--commercial-property-rentals.poehali.dev', // Указываем хост, который используется в вашем окружении
+      protocol: 'wss' // Используем безопасный WebSocket протокол
     }
   },
 });
